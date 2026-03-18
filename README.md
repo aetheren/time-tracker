@@ -13,6 +13,13 @@ A personal, local-first web app for logging daily time usage and generating repo
 - **Dark / light theme** toggle
 - **No database setup** — data is stored as JSON files locally
 
+## Prerequisites
+
+- [Node.js](https://nodejs.org) v18 or later
+- npm v9 or later (bundled with Node.js)
+
+No native addons or external database required.
+
 ## Getting Started
 
 ```bash
