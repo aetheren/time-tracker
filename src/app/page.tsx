@@ -5,6 +5,7 @@ import type { Category, Entry } from "@/types";
 import { EntryForm } from "@/components/EntryForm";
 import { EntryList } from "@/components/EntryList";
 import { DailySummaryBar } from "@/components/DailySummaryBar";
+import { DurationBarInput } from "@/components/DurationBarInput";
 
 export default function HomePage() {
   const today = format(new Date(), "yyyy-MM-dd");
@@ -83,6 +84,15 @@ export default function HomePage() {
 
       {categories.length > 0 && (
         <EntryForm categories={categories} selectedDate={selectedDate} onAdded={fetchData} />
+      )}
+
+      {categories.length > 0 && (
+        <DurationBarInput
+          categories={categories}
+          entries={entries}
+          selectedDate={selectedDate}
+          onSaved={fetchData}
+        />
       )}
 
       {totalMinutes > 0 && <DailySummaryBar entries={entries} totalMinutes={totalMinutes} />}

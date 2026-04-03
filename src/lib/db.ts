@@ -126,6 +126,17 @@ export function addEntry(
   return { ...entry, category_name: cat?.name, category_color: cat?.color };
 }
 
+export function updateEntry(id: number, duration_minutes: number): Entry | null {
+  const raw = readJson<RawEntry[]>("entries.json", []);
+  const entry = raw.find((e) => e.id === id);
+  if (!entry) return null;
+  entry.duration_minutes = duration_minutes;
+  writeJson("entries.json", raw);
+  const cats = getCategories();
+  const cat = cats.find((c) => c.id === entry.category_id);
+  return { ...entry, category_name: cat?.name, category_color: cat?.color };
+}
+
 export function deleteEntry(id: number): boolean {
   const raw = readJson<RawEntry[]>("entries.json", []);
   const next = raw.filter((e) => e.id !== id);
