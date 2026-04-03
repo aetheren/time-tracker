@@ -49,7 +49,11 @@ export function EntryList({ entries, totalMinutes, onDelete }: Props) {
               {entry.category_name}
             </span>
             <span className="flex-1 text-sm text-gray-700 dark:text-gray-300 truncate">
-              {entry.description || <span className="italic text-gray-400">(no description)</span>}
+              {entry.description
+                ? entry.description.length > 50
+                  ? entry.description.slice(0, 50) + "…"
+                  : entry.description
+                : <span className="italic text-gray-400">(no description)</span>}
             </span>
             <span className="text-sm font-semibold text-gray-800 dark:text-gray-200 flex-shrink-0">
               {formatDuration(entry.duration_minutes)}

@@ -4,6 +4,7 @@ import { format } from "date-fns";
 import type { DailyReport } from "@/types";
 import { formatDuration } from "@/lib/utils";
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from "recharts";
+import { StickerNotes } from "@/components/StickerNotes";
 
 export default function DailyReportPage() {
   const today = format(new Date(), "yyyy-MM-dd");
@@ -78,7 +79,7 @@ export default function DailyReportPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6" style={{ cursor: "url(/pikachu-cursor.svg) 16 16, auto" }}>
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
           <h1 className="text-2xl font-bold">Daily Report</h1>
@@ -170,11 +171,21 @@ export default function DailyReportPage() {
                   <span className="text-xs px-2 py-0.5 rounded-full flex-shrink-0" style={{ backgroundColor: e.category_color + "22", color: e.category_color }}>
                     {e.category_name}
                   </span>
-                  <span className="flex-1 text-sm text-gray-700 dark:text-gray-300">{e.description || <span className="italic text-gray-400">(no description)</span>}</span>
+                  <span className="flex-1 text-sm text-gray-700 dark:text-gray-300">
+                    {e.description
+                      ? e.description.length > 50
+                        ? e.description.slice(0, 50) + "…"
+                        : e.description
+                      : <span className="italic text-gray-400">(no description)</span>}
+                  </span>
                   <span className="text-sm font-medium">{formatDuration(e.duration_minutes)}</span>
                 </div>
               ))}
             </div>
+          </div>
+          {/* Sticker Notes — full descriptions in masonry layout */}
+          <div className="md:col-span-2">
+            <StickerNotes entries={report.entries} />
           </div>
         </div>
       )}

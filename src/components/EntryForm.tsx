@@ -58,12 +58,12 @@ export function EntryForm({ categories, selectedDate, onAdded }: Props) {
       <h2 className="font-semibold text-gray-700 dark:text-gray-300 text-sm uppercase tracking-wide">Log Time</h2>
 
       <div className="flex flex-col sm:flex-row gap-3">
-        <input
-          type="text"
+        <textarea
           placeholder="What did you work on? (optional)"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
-          className="flex-1 px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          rows={2}
+          className="flex-1 px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 resize-y min-h-[38px]"
         />
 
         <input

@@ -6,6 +6,7 @@ import { EntryForm } from "@/components/EntryForm";
 import { EntryList } from "@/components/EntryList";
 import { DailySummaryBar } from "@/components/DailySummaryBar";
 import { DurationBarInput } from "@/components/DurationBarInput";
+import { StickerNotes } from "@/components/StickerNotes";
 
 export default function HomePage() {
   const today = format(new Date(), "yyyy-MM-dd");
@@ -102,6 +103,8 @@ export default function HomePage() {
       ) : (
         <EntryList entries={entries} totalMinutes={totalMinutes} onDelete={handleDelete} />
       )}
+
+      <StickerNotes entries={entries} />
     </div>
   );
 }
